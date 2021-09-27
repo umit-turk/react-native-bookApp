@@ -1,5 +1,6 @@
-const SET_USER = "SET_USER";
-const USER_LOGOUT = "USER_LOGOUT";
+const SET_USER = "SET_USER"
+const USER_LOGOUT = "USER_LOGOUT"
+
 
 
 export {

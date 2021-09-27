@@ -1,62 +1,105 @@
 import React from 'react';
-import {View, Text, SafeAreaView} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import LoginScreen from '../screens/LoginScreen/LoginScreen';
-import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
 import {userScreens, mainScreens} from './router';
 import DashBoard from '../screens/DashBoard/DashBoard';
-import DetailScreen from '../screens/DetailScreen/DetailScreen';
 import FavoritiesScreen from '../screens/FavoritiesScreen/FavoritiesScreen';
 import {useSelector} from 'react-redux';
-import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import CartScreen from '../screens/CartScreen/CartScreen';
+import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
+import Icon from 'react-native-vector-icons/dist/Feather';
+import Person from 'react-native-vector-icons/dist/Ionicons';
+import LoginScreen from '../screens/LoginScreen/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
+import DetailScreen from '../screens/DetailScreen/DetailScreen';
 
 const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
+const SettingsStack = createStackNavigator();
 
-const userStack = () => {
+const HomepageBottom = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name={userScreens.LoginScreen} component={LoginScreen} />
-      <Stack.Screen
-        name={userScreens.RegisterScreen}
-        component={RegisterScreen}
+    <Tab.Navigator
+      screenOptions={{
+        headerStyle: {backgroundColor: '#FFC7A0'},
+        headerTintColor: 'white',
+        tabBarStyle: {backgroundColor: 'white'},
+        tabBarInactiveTintColor: '#FFC7A0',
+        tabBarActiveTintColor: '#FFC7A0',
+        tabBarLabelStyle: {
+          fontSize: 14,
+        },
+      }}>
+      <Tab.Screen
+        options={{
+          title: 'Anasayfa',
+          tabBarIcon: () => <Icon name="home" size={25} color={'#FFC7A0'} />,
+        }}
+        name={mainScreens.DashBoardScreen}
+        component={DashBoard}
       />
-    </Stack.Navigator>
-  );
-};
-
-const HomePage = () => {
-  return (
-    <Drawer.Navigator screenOptions={{headerShown: false}}>
-      <Drawer.Screen name={mainScreens.DashBoardScreen} component={DashBoard} />
-      <Drawer.Screen
+      <Stack.Screen name="second">
+      { () =>
+      <SettingsStack.Navigator>
+      <Tab.Screen
+        options={{
+          title: 'Favoriler',
+          tabBarIcon: () => <Icon name="star" size={25} color={'#FFC7A0'} />,
+        }}
         name={mainScreens.FavoritiesScreen}
         component={FavoritiesScreen}
       />
-      <Drawer.Screen name={mainScreens.Settings} component={SettingsScreen} />
-    </Drawer.Navigator>
+      </SettingsStack.Navigator>
+}
+</Stack.Screen>
+      <Stack.Screen name={"first"} options={{
+          title: 'Sepet',
+          tabBarIcon: () => (
+            <Icon name="shopping-cart" size={25} color={'#FFC7A0'} />
+          ),
+        }}>
+        { () => (
+        <SettingsStack.Navigator>
+          <Tab.Screen  
+          options={{headerShown: false}}
+        name={mainScreens.CartScreen}
+        component={CartScreen} />
+        </SettingsStack.Navigator>)
+}
+      </Stack.Screen>
+      <Tab.Screen
+        options={{
+          title: 'Profil',
+          tabBarIcon: () => (
+            <Person name="person" size={25} color={'#FFC7A0'} />
+          ),
+        }}
+        name={mainScreens.ProfileScreen}
+        component={ProfileScreen}
+      />
+    </Tab.Navigator>
   );
 };
 
-const mainPage = () => {
+const userAccount = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name={mainScreens.HomeScreen} component={HomePage} />
-      <Stack.Screen name={mainScreens.DetailScreen} component={DetailScreen} />
-    </Stack.Navigator>
-  );
-};
+  <Stack.Navigator>
+    <Stack.Screen options={{title:"Üye Girişi"}} name={userScreens.LoginScreen} component={LoginScreen} />
+    <Stack.Screen name={userScreens.RegisterScreen} component={RegisterScreen} />
+  </Stack.Navigator>
+  )
+}
+
+
 
 export default function RootNavigation() {
-  const isLogin = useSelector(state => state.system.isLogin);
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      {isLogin ? (
-        <Stack.Screen name={'mainpage'} component={mainPage} />
-      ) : (
-        <Stack.Screen name={userScreens.UserAuth} component={userStack} />
-      )}
+    <Stack.Navigator >
+      <Stack.Screen options={{headerShown: false}}  name={'homepage'} component={HomepageBottom} />
+      <Stack.Screen name={mainScreens.DetailScreen} component={DetailScreen} />
+      <Stack.Screen options={{title:"Üye Girişi"}} name={userScreens.LoginScreen} component={LoginScreen} />
+      <Stack.Screen options={{title: "Hesap Oluştur"}} name={userScreens.RegisterScreen} component={RegisterScreen} />
+      <Stack.Screen name={"account"} component={userAccount} />
     </Stack.Navigator>
   );
 }

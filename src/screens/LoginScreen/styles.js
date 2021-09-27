@@ -1,58 +1,65 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center"
+    epostaText:{
+        marginLeft: 30,
+        marginTop: 30,
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "gray",
     },
-    header: {
-        textAlign: "center",
-        marginVertical: 10,
+    userinput:{
+        marginTop:10,
+        marginHorizontal: 30,
+        height: 40,
+        borderWidth: 1,
+        borderColor: "#D1D0CF",
+        borderRadius: 7,
+        paddingLeft:10,
+    },
+    sifreText:{
+        marginLeft: 30,
+        marginTop: 20,
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "gray",
+    },
+    passwordinput:{
+        marginTop:10,
+        marginHorizontal: 30,
+        height: 40,
+        borderWidth: 1,
+        borderColor: "#D1D0CF",
+        borderRadius: 7,
+        paddingLeft:10,
+    },
+    buttonContainer:{
+        marginHorizontal: 30,
+    },
+    login:{
+        backgroundColor: "#FFC7A0",
+        marginTop: 20,
+        height: 50,
+        borderRadius: 8,
+        justifyContent: "center",
+        alignItems: "center",   
+    },
+    giristext:{
+        color: "white",
         fontSize: 20,
     },
-    userinput: {
-        height: 30,
-        marginHorizontal: 30,
-        backgroundColor: "lightblue",
-        borderRadius: 10,
-        marginVertical: 20,
-        color: "black",
-        paddingLeft: 10
-    },
-    passwordinput: {
-        height: 30,
-        marginHorizontal: 30,
-        backgroundColor: "lightblue",
-        borderRadius: 10,
-        color: "black",
+    register: {
+        marginTop: 60,
+        borderWidth: 2,
+        borderRadius: 8,
+        height: 50,
+        borderColor: "#FFC7A0",
+        justifyContent: "center",
         paddingLeft: 10,
     },
-    buttonContainer: {
-        flexDirection: "row",
-        marginHorizontal: 30,
-        justifyContent: "space-evenly",
-        marginTop: 20,
-    },
-    register: {
-        height: 30,
-        width: 70,
-        backgroundColor: "lightblue",
-        borderRadius: 10,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    login: {
-        height: 30,
-        width: 70,
-        backgroundColor: "lightblue",
-        borderRadius: 10,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    uyeText: {
-        fontSize: 16,
-    },
-    giristext: {
+    uyeText:{
+        color:"#FFC7A0",
+        fontWeight: "bold",
         fontSize: 16,
     }
 })

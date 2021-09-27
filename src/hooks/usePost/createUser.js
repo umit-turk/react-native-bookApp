@@ -10,14 +10,13 @@ function createPost(){
     const create = async (url, apiData) => {
         try {
             setLoading(true);
-            console.log(apiData);
             const {data: responseData} = await axios.post(url, apiData);
             setCreateUser(responseData);
-            setLoading(false)
-        } catch (error) {
-            console.log("create 1", error);
-            setError(error)
-            setLoading(false)
+            setLoading(false);
+          } catch (error) {
+            console.log('createUser hata', error);
+            setError(error);
+            setLoading(false);
         }
     }
     return {loading, error, create, createUser}

@@ -10,4 +10,6 @@ export const mainScreens = {
     FavoritiesScreen: 'FavoritiesScreen',
     HomeScreen : 'HomeScreen',
     Settings: "Settings",
+    CartScreen: "CartScreen",
+    ProfileScreen: "ProfileScreen",
 }
