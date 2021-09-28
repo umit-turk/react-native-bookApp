@@ -14,32 +14,32 @@ export default function DetailScreen() {
   const {addToFavoritie} = useAddToFavorite()
 
   const sendFavorities = (id) => {
-    addToFavoritie(Config.ADD_TO_FAVORITE, {id})
+    addToFavoritie(Config.ADD_TO_FAVORITE, id)
   }
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text>Banner</Text>
-      </View>
       <Text>{oneBook?.book_name}</Text>
-      {isLogin && (
-        <TouchableOpacity onPress={() => sendFavorities(oneBook.id)}>
-          <Icon name={'star-o'} />
-        </TouchableOpacity>
-      )}
       <Image
         style={{width: 50, height: 50}}
         source={{
           uri: 'http://192.168.1.37:8080/api/public/book/' + oneBook?.image,
         }}
       />
+        {isLogin && (
+        <TouchableOpacity onPress={() => sendFavorities(oneBook.id)}>
+          <Icon name={'star-o'} />
+        </TouchableOpacity>
+      )}
       <Text>{oneBook?.pub_year}</Text>
       <Text>{oneBook?.author_name}</Text>
       <Text>{oneBook?.type}</Text>
       <Text>{oneBook?.price}</Text>
       <Text>{oneBook?.description}</Text>
       <Text>{oneBook?.page}</Text>
+      <View>
+        
+      </View>
     </View>
   );
 }

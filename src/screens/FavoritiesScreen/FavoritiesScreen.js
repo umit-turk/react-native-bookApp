@@ -1,16 +1,24 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Image, FlatList} from 'react-native';
+import Config from 'react-native-config';
 import {useDispatch, useSelector} from 'react-redux';
 import CustomModel from '../../components/CustomModal/CustomModal';
+import useaddToCart from '../../hooks/useaddToCart/useaddToCart';
+import useDeleteFavorite from '../../hooks/useDeleteFavorite/useDeleteFavorite';
 import useGetFavorities from '../../hooks/useGetFavorities/useGetFavorities';
-import {userLogout} from '../../redux/auth/actions';
+import {styles} from './styles';
+
 
 export default function FavoritiesScreen() {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const {getFavorities, setGetFavorities, takeFavorities} = useGetFavorities();
+  const {getFavorities,setGetFavorities ,takeFavorities} = useGetFavorities();
+  const {addToCart} = useaddToCart();
 
+  const {remove } = useDeleteFavorite({getFavorities,setGetFavorities});
+
+  //   redux dan alıyoruz
+  const dispatch = useDispatch();
   const user = useSelector(state => state.userAuth.user);
   const isLogin = useSelector(state => state.userAuth.isLogin);
 
@@ -20,24 +28,49 @@ export default function FavoritiesScreen() {
     [user],
   );
 
-  useEffect(() => {
-    console.log('hello world');
-  }, []);
+ 
 
-  const cikis = () => {
-    dispatch(userLogout());
+  const deleteFavorite = book_id => {
+    remove(Config.DELETE_FAVORITE, book_id);
+  };
+
+  const sendToCart = (book_id) => {
+    addToCart(Config.ADD_TO_CART, [{book_id, adet:8}])
+  }
+  
+
+  const renderFavoritie = ({item}) => {
+    return (
+      <View>
+        <View style={styles.nameimage}>
+          <View>
+            <Image
+              style={styles.image}
+              source={{
+                uri: 'http://192.168.1.37:8080/api/public/book/' + item.image,
+              }}
+            />
+          </View>
+          <View style={styles.namebuton}>
+            <Text style={styles.book_name}>{item.book_name}</Text>
+            <View style={styles.butongroup}>
+            <TouchableOpacity onPress={() => deleteFavorite(item.book_id)}>
+              <Text>Kaldır</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => sendToCart(item.book_id)} style={styles.ekle}><Text>Ekle</Text></TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </View>
+    );
   };
 
   return (
-    <View>
-      <Text>FavoritiesScreen</Text>
-      <TouchableOpacity onPress={cikis}>
-        <Text>cıkıs</Text>
-      </TouchableOpacity>
+    <View style={styles.container}>
       {!isLogin ? (
         <CustomModel />
       ) : (
-        getFavorities.map(item => <Text>{item.id}</Text>)
+        <FlatList data={getFavorities} renderItem={renderFavoritie} />
       )}
     </View>
   );

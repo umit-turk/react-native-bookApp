@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export function userReducer(state = initialState, action) {
-  console.log("redux token",state.user)
   switch (action.type) {
     case SET_USER:
       return {

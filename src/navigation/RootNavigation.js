@@ -38,34 +38,46 @@ const HomepageBottom = () => {
         name={mainScreens.DashBoardScreen}
         component={DashBoard}
       />
-      <Stack.Screen name="second">
-      { () =>
-      <SettingsStack.Navigator>
-      <Tab.Screen
+      <Stack.Screen
+        name="second"
         options={{
+          headerShown: false,
           title: 'Favoriler',
           tabBarIcon: () => <Icon name="star" size={25} color={'#FFC7A0'} />,
-        }}
-        name={mainScreens.FavoritiesScreen}
-        component={FavoritiesScreen}
-      />
-      </SettingsStack.Navigator>
-}
-</Stack.Screen>
-      <Stack.Screen name={"first"} options={{
+        }}>
+        {() => (
+          <SettingsStack.Navigator>
+            <Tab.Screen
+              options={{
+                headerStyle: {backgroundColor: '#FFC7A0'},
+                title: 'Favoriler',
+                tabBarIcon: () => (
+                  <Icon name="star" size={25} color={'#FFC7A0'} />
+                ),
+              }}
+              name={mainScreens.FavoritiesScreen}
+              component={FavoritiesScreen}
+            />
+          </SettingsStack.Navigator>
+        )}
+      </Stack.Screen>
+      <Stack.Screen
+        name={'first'}
+        options={{
           title: 'Sepet',
           tabBarIcon: () => (
             <Icon name="shopping-cart" size={25} color={'#FFC7A0'} />
           ),
         }}>
-        { () => (
-        <SettingsStack.Navigator>
-          <Tab.Screen  
-          options={{headerShown: false}}
-        name={mainScreens.CartScreen}
-        component={CartScreen} />
-        </SettingsStack.Navigator>)
-}
+        {() => (
+          <SettingsStack.Navigator>
+            <Tab.Screen
+              options={{headerShown: false}}
+              name={mainScreens.CartScreen}
+              component={CartScreen}
+            />
+          </SettingsStack.Navigator>
+        )}
       </Stack.Screen>
       <Tab.Screen
         options={{
@@ -83,23 +95,40 @@ const HomepageBottom = () => {
 
 const userAccount = () => {
   return (
-  <Stack.Navigator>
-    <Stack.Screen options={{title:"Üye Girişi"}} name={userScreens.LoginScreen} component={LoginScreen} />
-    <Stack.Screen name={userScreens.RegisterScreen} component={RegisterScreen} />
-  </Stack.Navigator>
-  )
-}
-
-
+    <Stack.Navigator>
+      <Stack.Screen
+        options={{title: 'Üye Girişi'}}
+        name={userScreens.LoginScreen}
+        component={LoginScreen}
+      />
+      <Stack.Screen
+        name={userScreens.RegisterScreen}
+        component={RegisterScreen}
+      />
+    </Stack.Navigator>
+  );
+};
 
 export default function RootNavigation() {
   return (
-    <Stack.Navigator >
-      <Stack.Screen options={{headerShown: false}}  name={'homepage'} component={HomepageBottom} />
+    <Stack.Navigator>
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={'homepage'}
+        component={HomepageBottom}
+      />
       <Stack.Screen name={mainScreens.DetailScreen} component={DetailScreen} />
-      <Stack.Screen options={{title:"Üye Girişi"}} name={userScreens.LoginScreen} component={LoginScreen} />
-      <Stack.Screen options={{title: "Hesap Oluştur"}} name={userScreens.RegisterScreen} component={RegisterScreen} />
-      <Stack.Screen name={"account"} component={userAccount} />
+      <Stack.Screen
+        options={{title: 'Üye Girişi', headerStyle:{backgroundColor: "#FFC7A0"}, headerBackTitleVisible:false, headerBackTitleStyle:{color:"red"}}}
+        name={userScreens.LoginScreen}
+        component={LoginScreen}
+      />
+      <Stack.Screen
+        options={{title: 'Hesap Oluştur', headerStyle: {backgroundColor: "#FFC7A0"}}}
+        name={userScreens.RegisterScreen}
+        component={RegisterScreen}
+      />
+      <Stack.Screen name={'account'} component={userAccount} />
     </Stack.Navigator>
   );
 }

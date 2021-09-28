@@ -11,12 +11,12 @@ import {styles} from './styles';
 import {useNavigation} from '@react-navigation/core';
 import {userScreens} from '../../navigation/router';
 import {useDispatch} from 'react-redux';
-import { addName, addPassword, setUser } from '../../redux/system/actions';
 import { Formik } from 'formik';
 import Config from "react-native-config";
 import usePost from '../../hooks/usePost/usePost';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loginValidations } from '../../components/Validation';
+import { setUser } from '../../redux/auth/actions';
 
 export default function LoginScreen() {
    
@@ -42,7 +42,6 @@ function handleLogin(values){
         dispatch(setUser({user:data}))
     }
  }
- console.log("token sen misin",data)
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.epostaText}>E-posta Adresi:</Text>

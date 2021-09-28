@@ -6,10 +6,8 @@ import { useSelector } from 'react-redux';
 function useGetFavorities() {
   const [getFavorities, setGetFavorities] = useState([]);
   const {token} = useSelector(state => state.userAuth.user)
-    console.log("token gel",token)
   const takeFavorities = async () => {
     try {
-      console.log('nesin sen', Config.GET_FAVORITIES);
       const {data: responseData} = await axios({
           method: "GET",
           url: "http://192.168.1.37:8080/api/favorite/favoriteList",
@@ -17,8 +15,8 @@ function useGetFavorities() {
               Authorization: `Bearer ${token}`
           }
       })
-      console.log("get",responseData)
       setGetFavorities(responseData.data);
+      console.log(getFavorities,"ne bu")
     } catch (error) {
       console.log('getfavorities hatası', error);
     }

@@ -1,17 +1,22 @@
-import { SET_USER , USER_LOGOUT} from "../auth/actionTypes";
+import { ADD_TO_CART, REMOVE_FROM_CART, CLEAN_CART } from "./actionTypes";
 
-export function setUser(data){
+export function addCart(item){
     return {
-        type: SET_USER,
-        payload: data
+        type: ADD_TO_CART,
+        payload: item
     }
 }
-export function userLogout(){
-    return {
-        type: USER_LOGOUT,
+export function removeFromCart(item){
+    return{
+        type: REMOVE_FROM_CART,
+        payload: item
     }
 }
-
+export function cleanCart(){
+    return{
+        type: CLEAN_CART,
+    }
+}
 
 // import { ADD_NAME, CLEAN_LIST, ADD_PASSWORD, CLEAN_PASSWORD } from "./actionTypes";
 
