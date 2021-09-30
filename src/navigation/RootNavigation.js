@@ -119,12 +119,20 @@ export default function RootNavigation() {
       />
       <Stack.Screen name={mainScreens.DetailScreen} component={DetailScreen} />
       <Stack.Screen
-        options={{title: 'Üye Girişi', headerStyle:{backgroundColor: "#FFC7A0"}, headerBackTitleVisible:false, headerBackTitleStyle:{color:"red"}}}
+        options={{
+          title: 'Üye Girişi',
+          headerStyle: {backgroundColor: '#FFC7A0'},
+          headerBackTitleVisible: false,
+          headerBackTitleStyle: {color: 'red'},
+        }}
         name={userScreens.LoginScreen}
         component={LoginScreen}
       />
       <Stack.Screen
-        options={{title: 'Hesap Oluştur', headerStyle: {backgroundColor: "#FFC7A0"}}}
+        options={{
+          title: 'Hesap Oluştur',
+          headerStyle: {backgroundColor: '#FFC7A0'},
+        }}
         name={userScreens.RegisterScreen}
         component={RegisterScreen}
       />

@@ -23,7 +23,7 @@ export default function DetailScreen() {
       <Image
         style={{width: 50, height: 50}}
         source={{
-          uri: 'http://192.168.1.37:8080/api/public/book/' + oneBook?.image,
+          uri: 'http://192.168.1.43:8080/api/public/book/' + oneBook?.image,
         }}
       />
         {isLogin && (

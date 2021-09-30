@@ -32,7 +32,7 @@ export default function Books() {
             <Image
               style={styles.image}
               source={{
-                uri: 'http://192.168.1.37:8080/api/public/book/' + item.image,
+                uri: 'http://192.168.1.43:8080/api/public/book/' + item.image,
               }}
             />
           </TouchableWithoutFeedback>

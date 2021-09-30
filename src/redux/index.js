@@ -3,8 +3,7 @@ import {applyMiddleware, compose, createStore} from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
-import {rootReducer} from './reducer';
-
+import rootReducer from './reducers';
 const middleware = [promise, thunk];
 
 const persistConfig = {

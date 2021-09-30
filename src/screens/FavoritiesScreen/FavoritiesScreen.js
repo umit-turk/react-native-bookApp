@@ -34,8 +34,8 @@ export default function FavoritiesScreen() {
     remove(Config.DELETE_FAVORITE, book_id);
   };
 
-  const sendToCart = (book_id) => {
-    addToCart(Config.ADD_TO_CART, [{book_id, adet:8}])
+  const sendToCart = (item) => {
+    addToCart(Config.ADD_TO_CART, item)
   }
   
 
@@ -47,7 +47,7 @@ export default function FavoritiesScreen() {
             <Image
               style={styles.image}
               source={{
-                uri: 'http://192.168.1.37:8080/api/public/book/' + item.image,
+                uri: 'http://192.168.1.43:8080/api/public/book/' + item.image,
               }}
             />
           </View>
@@ -57,7 +57,7 @@ export default function FavoritiesScreen() {
             <TouchableOpacity onPress={() => deleteFavorite(item.book_id)}>
               <Text>Kaldır</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => sendToCart(item.book_id)} style={styles.ekle}><Text>Ekle</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => sendToCart(item)} style={styles.ekle}><Text>Ekle</Text></TouchableOpacity>
             </View>
           </View>
         </View>

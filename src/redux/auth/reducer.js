@@ -5,9 +5,10 @@ const initialState = {
   isLogin: false,
 };
 
-export function userReducer(state = initialState, action) {
+export default function userAuth(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
+      console.log("auth",state)
       return {
         ...state,
         isLogin: true,

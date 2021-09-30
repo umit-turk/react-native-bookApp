@@ -22,7 +22,6 @@ function useBookDetail() {
     eachbook(Config.BOOK_DETAIL, id);
   }, [id]);
 
-  console.log(oneBook);
 
   return {oneBook}
 }

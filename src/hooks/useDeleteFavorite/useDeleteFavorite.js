@@ -1,14 +1,10 @@
 import axios from 'axios';
-import {useState} from 'react';
-import Config from 'react-native-config';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
-function useDeleteFavorite({getFavorities,setGetFavorities}) {
+function useDeleteFavorite({getFavorities, setGetFavorities}) {
   const {token} = useSelector(state => state.userAuth.user);
-  
 
   const remove = async (url, book_id) => {
-    console.log(token)
     try {
       const {data: responseData} = await axios.post(
         url,
@@ -19,16 +15,15 @@ function useDeleteFavorite({getFavorities,setGetFavorities}) {
           },
         },
       );
-      if(responseData?.success){
-      const filtered = getFavorities.filter(item => item.book_id !== book_id)
-      setGetFavorities(filtered)
+      if (responseData?.success) {
+        const filtered = getFavorities.filter(item => item.book_id !== book_id);
+        setGetFavorities(filtered);
       }
-      console.log("silin",responseData)
     } catch (error) {
       console.log('deletefav hatası', error);
     }
   };
-  return {remove}
+  return {remove};
 }
 
 export default useDeleteFavorite;

@@ -17,7 +17,5 @@ export const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 10,
     },
-    boxShadow:{
-        textShadowColor: "red"
-    }
+    
 })

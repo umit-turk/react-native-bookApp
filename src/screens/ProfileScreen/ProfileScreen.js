@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { styles } from './styles'
 import ProfilButton from '../../components/ProfilButton/ProfilButton'
 import { userLogout } from '../../redux/auth/actions'
+
 export default function ProfileScreen() {
-    const user = useSelector(state => state.userAuth.user)
+    const {username} = useSelector(state => state.userAuth.user)
 
     const  dispatch = useDispatch()
     
@@ -15,16 +16,15 @@ export default function ProfileScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.name}>Ümit Yaşar Türk</Text>
+            <Text style={styles.name}>{username}</Text>
         <View style={styles.profilarea}>
             <ProfilButton />
             <ProfilButton />
             <ProfilButton />
-            <ProfilButton exitBtn>
+            <ProfilButton onPress={cikis} exitBtn>
                 Çıkış
             </ProfilButton>
         </View>
-        <Text style={styles.boxShadow}>Merhaba ben box</Text>
         </SafeAreaView>
     )
 }

@@ -8,19 +8,19 @@ function useAddToFavorite() {
 
   const addToFavoritie = async (url, book_id) => {
     try {
-      console.log('book_id', book_id);
       const {data: responseData} = await axios.post(
         url,
         {book_id},
         {headers: {Authorization: `Bearer ${token}`}},
-      );
-      setFavorite(responseData);
+        );
+        console.log(book_id)
+        setFavorite(responseData);
+        console.log(responseData)
     } catch (error) {
       console.log('favori ekleme hatası', error);
     }
   };
 
-  console.log(favorite);
   return {favorite, addToFavoritie};
 }
 
