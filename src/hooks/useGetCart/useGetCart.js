@@ -10,6 +10,7 @@ carttan silme işlemi için servere post request yapıyoruz sonra bu sildiklerim
 */
 
 function useGetCart() {
+  //redux
   const {token} = useSelector(state => state.userAuth.user);
   const dispatch = useDispatch();
 
@@ -18,7 +19,6 @@ function useGetCart() {
       const {data: responseData} = await axios.get(Config.GET_CART, {
         headers: {Authorization: `Bearer ${token}`},
       });
-      console.log('response', responseData);
       dispatch(initialize({init: responseData.kitaplar.data}));
     } catch (error) {
       console.log('usegetcart', error);

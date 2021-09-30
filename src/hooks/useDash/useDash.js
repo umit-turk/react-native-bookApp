@@ -4,6 +4,7 @@ import Config from 'react-native-config';
 
 
 function useDash(){
+    //dashboardda kullanıyoruz.
     const [books, setBooks] = useState([]);
    
 

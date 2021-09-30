@@ -13,6 +13,10 @@ const initialState = {
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TO_CART:
+      const book_item = state.cart.find(item => item.book_id===action.payload.item.book_id)
+      if(book_item){
+        return state
+      }
       return {
         ...state,
         cart: [...state.cart, action.payload.item],
@@ -22,12 +26,7 @@ export default function cartReducer(state = initialState, action) {
         cart: action.payload.init,
       };
     case REMOVE_FROM_CART:
-      console.log(
-        'reducer remove',
-        state.cart,
-        'payload id',
-        action.payload.book_id,
-      );
+      
       return {
         ...state,
         cart: state.cart.filter(
@@ -35,20 +34,25 @@ export default function cartReducer(state = initialState, action) {
         ),
       };
     case INCREMENT_COUNT:
+      console.log("cart",state.cart)
+      /* state'nin kopyasını al , statedeki cart'ı map ile döndür ve item book id ile action.payload dan gelen eşitse,
+       item'ın kopyasını al üzeine item.adet'i bir arttırark ekle diğer türlü direk item'ı dön */ 
       return {
         ...state,
         cart: state.cart.map(item =>
-          item.book_id === book_id ? {...item, adet: item.adet + 1} : item,
+          item.book_id === action.payload ? {...item, adet: item.adet + 1} : item,
         ),
       };
     case DECREMENT_COUNT:
-      if (DECREMENT_COUNT < 0) {
+      console.log("cartımız",state.cart);
+      
+      if (state.cart < 0) {
         return state;
       }
       return {
         ...state,
         cart: state.cart.map(item =>
-          item.book_id === book_id ? {...item, adet: item.adet - 1} : item,
+          item.book_id === action.payload ? {...item, adet: item.adet - 1} : item,
         ),
       };
     case CLEAN_CART:

@@ -14,7 +14,6 @@ export function addCart(item) {
   };
 }
 export function removeFromCart(book_id) {
-  console.log("action",book_id);
   return {
     type: REMOVE_FROM_CART,
     payload: book_id,
@@ -26,6 +25,7 @@ export function cleanCart() {
   };
 }
 export function incrementCounter(book_id) {
+  console.log("increment",book_id)
   return {
     type: INCREMENT_COUNT,
     payload: book_id,
@@ -38,7 +38,6 @@ export function decrementCounter(book_id) {
   };
 }
 export function initialize(init){
-  console.log("init",init);
   return{
     type: INITIALIZE,
     payload: init

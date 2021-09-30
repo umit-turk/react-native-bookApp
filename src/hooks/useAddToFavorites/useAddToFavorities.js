@@ -3,7 +3,10 @@ import axios from 'axios';
 import {useSelector} from 'react-redux';
 
 function useAddToFavorite() {
+  //redux
   const {token} = useSelector(state => state.userAuth.user);
+  
+  //favoriteScreende kullanıyoruz
   const [favorite, setFavorite] = useState();
 
   const addToFavoritie = async (url, book_id) => {
@@ -14,7 +17,9 @@ function useAddToFavorite() {
         {headers: {Authorization: `Bearer ${token}`}},
         );
         console.log(book_id)
-        setFavorite(responseData);
+        
+          setFavorite(responseData);
+        
         console.log(responseData)
     } catch (error) {
       console.log('favori ekleme hatası', error);

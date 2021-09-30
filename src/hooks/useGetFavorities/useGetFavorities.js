@@ -3,8 +3,12 @@ import {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 
 function useGetFavorities() {
-  const [getFavorities, setGetFavorities] = useState([]);
+  //redux
   const {token} = useSelector(state => state.userAuth.user)
+
+  //state
+  const [getFavorities, setGetFavorities] = useState([]);
+  
   const takeFavorities = async () => {
     try {
       const {data: responseData} = await axios({
@@ -15,6 +19,7 @@ function useGetFavorities() {
           }
       })
       setGetFavorities(responseData.data);
+      console.log(getFavorities)
     } catch (error) {
       console.log('getfavorities hatası', error);
     }

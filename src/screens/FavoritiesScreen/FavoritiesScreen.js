@@ -11,10 +11,12 @@ import {styles} from './styles';
 
 
 export default function FavoritiesScreen() {
+  //react navigation dan gelen hook
   const navigation = useNavigation();
+
+  //hookslardan aldıklarımız
   const {getFavorities,setGetFavorities ,takeFavorities} = useGetFavorities();
   const {addToCart} = useaddToCart();
-
   const {remove } = useDeleteFavorite({getFavorities,setGetFavorities});
 
   //   redux dan alıyoruz
@@ -22,23 +24,24 @@ export default function FavoritiesScreen() {
   const user = useSelector(state => state.userAuth.user);
   const isLogin = useSelector(state => state.userAuth.isLogin);
 
-  // favoriler sayfası her açıldığında rerender ediyoruz
+  // favoriler sayfası her açıldığında re-render ediyoruz
   useEffect(
     () => navigation.addListener('focus', () => takeFavorities()),
     [user],
   );
 
  
-
+//favorileri silmek için kullanıyoruz
   const deleteFavorite = book_id => {
     remove(Config.DELETE_FAVORITE, book_id);
   };
 
+  //cart'a eklemek için kullanıyoruz
   const sendToCart = (item) => {
     addToCart(Config.ADD_TO_CART, item)
   }
   
-
+//flatlistdeki renderItem'a atıyoruz
   const renderFavoritie = ({item}) => {
     return (
       <View>
