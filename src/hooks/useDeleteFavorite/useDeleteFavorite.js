@@ -2,6 +2,7 @@ import axios from 'axios';
 import {useSelector} from 'react-redux';
 
 function useDeleteFavorite({getFavorities, setGetFavorities}) {
+  //redux
   const {token} = useSelector(state => state.userAuth.user);
 
   const remove = async (url, book_id) => {

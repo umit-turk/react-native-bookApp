@@ -12,6 +12,8 @@ import Person from 'react-native-vector-icons/dist/Ionicons';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
 import DetailScreen from '../screens/DetailScreen/DetailScreen';
+import {Button} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -50,6 +52,7 @@ const HomepageBottom = () => {
             <Tab.Screen
               options={{
                 headerStyle: {backgroundColor: '#FFC7A0'},
+                headerTintColor:"white",
                 title: 'Favoriler',
                 tabBarIcon: () => (
                   <Icon name="star" size={25} color={'#FFC7A0'} />
@@ -110,6 +113,11 @@ const userAccount = () => {
 };
 
 export default function RootNavigation() {
+  //react navigationdan çağır
+  const navigation = useNavigation();
+  const goToDash = () => {
+    navigation.goBack();
+  };
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -117,7 +125,16 @@ export default function RootNavigation() {
         name={'homepage'}
         component={HomepageBottom}
       />
-      <Stack.Screen name={mainScreens.DetailScreen} component={DetailScreen} />
+      <Stack.Screen
+        options={{
+          headerStyle: {backgroundColor: '#FFC7A0'},
+          headerBackTitleVisible: false,
+          headerTintColor:"white",
+          headerLeft: () => <Button  color="white" title="geri" onPress={goToDash} />,
+        }}
+        name={mainScreens.DetailScreen}
+        component={DetailScreen}
+      />
       <Stack.Screen
         options={{
           title: 'Üye Girişi',

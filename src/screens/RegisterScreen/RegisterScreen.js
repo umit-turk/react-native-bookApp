@@ -29,8 +29,6 @@ export default function RegisterScreen() {
   if (createUser) {
     console.log("kayıt",createUser);
     navigation.navigate(userScreens.LoginScreen)
-
-    
   }
   return (
     <SafeAreaView style={styles.container}>

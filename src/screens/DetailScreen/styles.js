@@ -1,8 +1,71 @@
-import { StyleSheet } from "react-native";
+import {  StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container:{
         flex:1,
         backgroundColor: "#ECE8E4"
+    },
+    imageandothers:{
+        flexDirection:"row",
+        flex:0.5,
+        marginHorizontal:20,
+    },
+    imageview:{
+        flex: 1,
+    },
+    bookinfo:{
+        flex:1,
+        alignItems:"flex-end",
+        justifyContent:"space-evenly"
+    },
+    book_name:{
+        marginTop:10,
+        fontSize:18,
+        fontWeight:"bold"
+    },
+    author:{
+        fontSize:18,
+        fontWeight:"bold"
+    },
+    pub_year:{
+        fontSize:18,
+        fontWeight:"bold"
+    },
+    favbtn:{
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"space-between"
+    },
+    favoriText:{
+        fontSize:18,
+        fontWeight:"bold",
+        marginRight:5,
+    },
+    image:{
+        marginTop:20,
+        flex:1,
+        borderRadius: 20,
+    },
+    price:{
+        color:"green",
+        fontSize:18,
+        fontWeight:"bold"
+    },
+    type:{
+        fontWeight:"bold",
+        fontSize:20,
+        marginLeft:20,
+        marginTop:20,
+    },
+    description:{
+        marginLeft:25,
+        marginTop:20,
+        marginRight:20,
+        fontSize:16,
+        lineHeight:20,
+    },
+    page:{
+        fontSize:18,
+        fontWeight:"bold"
     }
 })

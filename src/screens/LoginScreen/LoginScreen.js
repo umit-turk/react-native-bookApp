@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {styles} from './styles';
 import {useNavigation} from '@react-navigation/core';
-import {userScreens} from '../../navigation/router';
+import {mainScreens, userScreens} from '../../navigation/router';
 import {useDispatch} from 'react-redux';
 import { Formik } from 'formik';
 import Config from "react-native-config";
@@ -40,6 +40,7 @@ function handleLogin(values){
         alert("kullanıcı bulunamadı")
     }else{
         dispatch(setUser({user:data}))
+        navigation.navigate(mainScreens.DashBoardScreen)
     }
  }
   return (

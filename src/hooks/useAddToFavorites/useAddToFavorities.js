@@ -7,7 +7,7 @@ function useAddToFavorite() {
   const {token} = useSelector(state => state.userAuth.user);
   
   //favoriteScreende kullanıyoruz
-  const [favorite, setFavorite] = useState();
+  const [favorite, setFavorite] = useState(true);
 
   const addToFavoritie = async (url, book_id) => {
     try {
@@ -17,10 +17,7 @@ function useAddToFavorite() {
         {headers: {Authorization: `Bearer ${token}`}},
         );
         console.log(book_id)
-        
           setFavorite(responseData);
-        
-        console.log(responseData)
     } catch (error) {
       console.log('favori ekleme hatası', error);
     }

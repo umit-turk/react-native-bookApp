@@ -9,21 +9,40 @@ export const styles = StyleSheet.create({
         width: 70,
         height: 70,
         marginLeft: 10,
-        marginTop: 10,
 
     },
     nameimage: {
         flexDirection: "row",
+        marginTop:10,
     },
     namebuton:{
         justifyContent:"space-around",
         marginLeft: 10,
         
     },
+    book_name:{
+        fontSize:16,
+        fontWeight:"bold"
+    },
     butongroup: {
-        flexDirection: "row"
     },
     ekle:{
-        marginLeft: 10,
-    }
+        backgroundColor: "#FFC7A0",
+        width:100,
+        borderRadius:5,
+    },
+    favbtn:{
+        backgroundColor: "#FFC7A0",
+        marginBottom:10,
+        width:150,
+        borderRadius:5
+    },
+    textfavori:{
+        textAlign:"center",
+        color:"white"
+    },
+    textsepet:{
+        textAlign:"center",
+        color:"white"
+    },
 })

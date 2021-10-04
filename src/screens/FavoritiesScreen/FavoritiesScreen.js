@@ -57,10 +57,10 @@ export default function FavoritiesScreen() {
           <View style={styles.namebuton}>
             <Text style={styles.book_name}>{item.book_name}</Text>
             <View style={styles.butongroup}>
-            <TouchableOpacity onPress={() => deleteFavorite(item.book_id)}>
-              <Text>Kaldır</Text>
+            <TouchableOpacity style={styles.favbtn} onPress={() => deleteFavorite(item.book_id)}>
+              <Text style={styles.textfavori}>Favorilerden kaldır</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => sendToCart(item)} style={styles.ekle}><Text>Ekle</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => sendToCart(item)} style={styles.ekle}><Text style={styles.textsepet}>Sepete Ekle</Text></TouchableOpacity>
             </View>
           </View>
         </View>

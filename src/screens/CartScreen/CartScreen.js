@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   FlatList,
   Image,
+  ScrollView,
 } from 'react-native';
 import {styles} from './styles';
 import CustomModel from '../../components/CustomModal/CustomModal';
@@ -47,22 +48,16 @@ export default function CartScreen() {
 
   //sepetteli ürünü arttırmak için kullanıyoruz.adet den sonra gelen callback fonksiyonu
   const incrementItem = (item, adet) => {
-    addToCart(
-      Config.ADD_TO_CART,
-      item,
-      adet,
-      ()=>dispatch(incrementCounter(item.book_id, adet)),
+    addToCart(Config.ADD_TO_CART, item, adet, () =>
+      dispatch(incrementCounter(item.book_id, adet)),
     );
   };
 
   //sepetteki ürünü azaltmak için kullanıyoruz.adet den sonra gelen callback fonksiyonu.
   const decrementItem = (item, adet) => {
     if (adet >= 1) {
-      addToCart(
-        Config.ADD_TO_CART,
-        item,
-        adet,
-       ()=> dispatch(decrementCounter(item.book_id, adet)),
+      addToCart(Config.ADD_TO_CART, item, adet, () =>
+        dispatch(decrementCounter(item.book_id, adet)),
       );
     }
   };
@@ -71,41 +66,47 @@ export default function CartScreen() {
   //sepetteki ürünleri listelemek için kullandığımız fonksiyon Flatlistteki renderItem'a atıyoruz.
   const renderCart = ({item}) => {
     return (
-      <SafeAreaView>
-        <Text>{item.book_name}</Text>
-        <Image
-          style={styles.image}
-          source={{
-            uri: 'http://192.168.1.43:8080/api/public/book/' + item.image,
-          }}
-        />
-        <Text>{item.adet}</Text>
-        <TouchableOpacity onPress={() => deleteItemCart(item.book_id)}>
-          <Text>Kaldır</Text>
-        </TouchableOpacity>
-        <View style={styles.btngroup}>
-          <TouchableOpacity
-            onPress={() => incrementItem(item, item.adet + 1)}
-            style={styles.positivebtn}>
-            <Text style={styles.positivetext}>+</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => decrementItem(item, item.adet - 1)}
-            style={styles.minusbtn}>
-            <Text style={styles.minustext}>-</Text>
-          </TouchableOpacity>
+      <SafeAreaView >
+        <View style={styles.genel}>
+          <Image
+            style={styles.image}
+            source={{
+              uri: 'http://192.168.1.43:8080/api/public/book/' + item.image,
+            }}
+          />
+          <View style={styles.nameandbtn}>
+            <Text style={styles.book_name}>{item.book_name}</Text>
+            <TouchableOpacity style={styles.removebtn} onPress={() => deleteItemCart(item.book_id)}>
+              <Text style={styles.textbtn}>Kaldır</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.btngroup}>
+            <TouchableOpacity
+              onPress={() => incrementItem(item, item.adet + 1)}
+              style={styles.positivebtn}>
+              <Text style={styles.positivetext}>+</Text>
+            </TouchableOpacity>
+            <Text style={styles.adettext}>{item.adet}</Text>
+            <TouchableOpacity
+              onPress={() => decrementItem(item, item.adet - 1)}
+              style={styles.minusbtn}>
+              <Text style={styles.minustext}>-</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </SafeAreaView>
     );
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.username}>{username}</Text>
-      {!isLogin ? (
-        <CustomModel />
-      ) : (
-        <FlatList data={cart} renderItem={renderCart} />
-      )}
+      
+        <Text style={styles.username}>{username}</Text>
+        {!isLogin ? (
+          <CustomModel />
+        ) : (
+          <FlatList showsVerticalScrollIndicator={false} data={cart} renderItem={renderCart} />
+        )}
+      
     </View>
   );
 }
